@@ -14,7 +14,6 @@ export function fetch_get_with_params(url,params){
             url2  = url2 + '&' + params[i]['key']+'='+params[i]['value'];
         }
     }
-    console.log(url2);
     return this.fetch_get(url2);
 }
 
@@ -50,7 +49,6 @@ export function fetch_post(url,data){
 }
 
 export function fetch_get(url){
-    console.log(url);
     let url2 = `${ADAPTER_URL}/${url}`;
     return fetch(url2,{
         headers: {

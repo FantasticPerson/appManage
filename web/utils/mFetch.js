@@ -90,8 +90,8 @@ function filterHttpStatusResponse(response,url) {
 }
 
 function filterResponseJson(resJson,url){
-    if(resJson.Data){
-        if(resJson.pageSize) {
+    if(resJson.hasOwnProperty('Data')){
+        if(resJson.hasOwnProperty('pageSize')) {
             return {data: resJson.Data, pageSize: resJson.pageSize};
         } else {
             return {data:resJson.Data};

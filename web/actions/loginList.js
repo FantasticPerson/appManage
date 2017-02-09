@@ -25,9 +25,9 @@ export function getLoginList(index,cb = null){
         },
         onEnd: function(data) {
             if(!actionHelper.isError(data)) {
-                this.dispatch(actionHelper.createPayloadAction(ActionTypes.update_login_list, data.data));
+                this.dispatch(actionHelper.createPayloadAction(ActionTypes.update_login_list, data.data || []));
                 if(data.pageSize) {
-                    this.dispatch(actionHelper.createPayloadAction(ActionTypes.update_login_list_page_num, data.pageSize))
+                    this.dispatch(actionHelper.createPayloadAction(ActionTypes.update_login_list_page_num, data.pageSize || 0))
                 }
                 this.dispatch(actionHelper.createPayloadAction(ActionTypes.update_login_list_page_index,index));
             }
@@ -51,9 +51,9 @@ export function getLoginListSearch(text,cb=null){
         },
         onEnd: function(data) {
             if(!actionHelper.isError(data)) {
-                this.dispatch(actionHelper.createPayloadAction(ActionTypes.update_login_list, data.data));
+                this.dispatch(actionHelper.createPayloadAction(ActionTypes.update_login_list, data.data || []));
                 if(data.pageSize) {
-                    this.dispatch(actionHelper.createPayloadAction(ActionTypes.update_login_list_page_num, data.pageSize))
+                    this.dispatch(actionHelper.createPayloadAction(ActionTypes.update_login_list_page_num, data.pageSize || 0))
                 } else {
                     this.dispatch(actionHelper.createPayloadAction(ActionTypes.update_login_list_page_num, 0))
                 }

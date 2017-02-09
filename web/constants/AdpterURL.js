@@ -6,3 +6,4 @@
 // export const POST_UPDATE_USER_DATA = 'customer/update';
 // export const POST_REMOVE_USER = 'customer/remove';
 // export const GET_DETAIL_CUSTOMERS = 'api/customer/info';
+export const GET_LOGIN_LIST='api/loginList';

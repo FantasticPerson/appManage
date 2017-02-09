@@ -3,6 +3,7 @@
  */
 import indexApp from '../containers/index'
 import main from './main'
+import LoginList from './loginList'
 
 const index = {
     path:'/',
@@ -11,7 +12,8 @@ const index = {
         cb();
     },
     childRoutes:[
-        main
+        main,
+        LoginList
     ]
 };
 

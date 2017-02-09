@@ -4,24 +4,27 @@ global.__WEB_PACK_SERVER__ = true;
 
 import * as DEV_CONST from './const'
 import webpack from 'webpack'
+import WebpackDevServer from 'webpack-dev-server'
 import {webpackConfig} from './webpack.config.babel'
-import devMiddleware from 'webpack-dev-middleware'
-import hotMiddleware from 'webpack-hot-middleware'
-import path from 'path'
 
 let express = require('express');
 let config = webpackConfig({
     devServer: true
 });
-let compiler = webpack(config);
 
-let app = express();
-app.use(devMiddleware(compiler,{
+let devServer = new WebpackDevServer(webpack(config), {
     contentBase: DEV_CONST.OUTPUT_WEB_DIR,
     publicPath: config.output.publicPath,
     headers: {
         'Access-Control-Allow-Origin': '*',
+        "Access-Control-Allow-Credentials": "true",
         "X-Custom-Header": "yes"
+    },
+    proxy: {
+        '*': {
+            target: 'http://10.10.61.175:10001/',
+            secure: false,
+        }
     },
     stats: { colors: true },
     colors: true,
@@ -30,14 +33,10 @@ app.use(devMiddleware(compiler,{
     quiet: false,
     noInfo: false,
     index: 'main.html'
-}));
+});
 
-app.use(hotMiddleware(compiler));
-// app.get('*', function (req, res) {
-//     res.sendFile('./main.html');
-// });
-app.use(express.static(DEV_CONST.ASSETS_PUBLIC_DIR, {maxAge:0}));
-app.listen(DEV_CONST.DEV_PORT, '0.0.0.0', (err) => {
+devServer.use(express.static(DEV_CONST.ASSETS_PUBLIC_DIR, {maxAge:0}));
+devServer.listen(DEV_CONST.DEV_PORT, '0.0.0.0', (err) => {
     if (err) {
         console.error(err);
     }

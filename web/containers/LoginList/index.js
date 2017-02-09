@@ -13,7 +13,7 @@ import {showLoading,removeLoading} from '../../actions/view'
 class DemoPage extends Component{
     constructor(){
         super();
-        this.state= {view:ViewState.view_loading,height:'750px'};
+        this.state= {view:ViewState.view_loading,height:'750px',tableWidth:'950px'};
     }
 
     renderFooter(){
@@ -76,7 +76,7 @@ class DemoPage extends Component{
     }
 
     render(){
-        const {height} = this.state;
+        const {height,tableWidth} = this.state;
         const {loginList} = this.props;
         let headThArr = ViewState.tableHeadProp2.map((item,index)=>{
             return (
@@ -105,17 +105,16 @@ class DemoPage extends Component{
             <div>
                 <div className="app_header_content">
                     <div className="app_header_content_container">
-                        <h3 className="app_header_title">{'应用管理'}</h3>
+                        <h3 className="app_header_title">{'登陆管理'}</h3>
                     </div>
                     <div className="app_tool_content">
-                        <input className="app_tool_search" type="text" placeholder="请输入账号或姓名" onKeyDown={(e)=>{
+                        <input style={{width:(tableWidth-50)+'px'}} className="app_tool_search" type="text" placeholder="请输入姓名" onKeyDown={(e)=>{
                             this.onKeyDown(e);
                         }}/>
                     </div>
-
                 </div>
                 <div className="app_list_container" style={{height:height+'px',overflow:'auto'}}>
-                    <table style={{width:'950px',marginLeft:'10px'}}>
+                    <table style={{width:tableWidth+'px',marginLeft:'10px'}}>
                         <thead>
                         <tr style={{height: '35px', background: 'rgb(242, 247, 251)'}}>
                         {headThArr}
@@ -148,8 +147,8 @@ class DemoPage extends Component{
     componentDidMount(){
         const {pageIndex} = this.props;
         window.addEventListener('resize', this.handleResize.bind(this));
-        const {innerHeight} = window;
-        this.setState({height:innerHeight-250});
+        const {innerWidth,innerHeight} = window;
+        this.setState({height:innerHeight-250,tableWidth:innerWidth-170<950?950:innerWidth-170});
         this.props.dispatch(showLoading('正在获取数据,请稍后...'));
         this.props.dispatch(getLoginList(pageIndex,this.onGetDataCb.bind(this)));
     }
@@ -160,7 +159,7 @@ class DemoPage extends Component{
 
     handleResize(){
         const {innerWidth,innerHeight} = window;
-        this.setState({height:innerHeight-250});
+        this.setState({height:innerHeight-250,tableWidth:innerWidth-170<950?950:innerWidth-170});
     }
 }
 

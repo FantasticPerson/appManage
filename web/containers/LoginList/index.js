@@ -72,6 +72,21 @@ class DemoPage extends Component{
     }
 
     render(){
+        Date.prototype.Format = function (fmt) { //author: meizz
+            var o = {
+                "M+": this.getMonth() + 1, //月份
+                "d+": this.getDate(), //日
+                "h+": this.getHours(), //小时
+                "m+": this.getMinutes(), //分
+                "s+": this.getSeconds(), //秒
+                "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+                "S": this.getMilliseconds() //毫秒
+            };
+            if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+            for (var k in o)
+                if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+            return fmt;
+        };
         const {height,tableWidth} = this.state;
         const {loginList} = this.props;
         let headThArr = ViewState.tableHeadProp2.map((item,index)=>{
@@ -81,6 +96,7 @@ class DemoPage extends Component{
         });
         let styleTrTd = {textAlign:'center',borderBottom:'1px dashed #ececec'};
         let bodyContent = loginList.map((item,index)=>{
+            let date = new Date(item.time*1000);
             return (
                 <tr key={index} style={{height:'50px'}}>
                     <td key="0" style={styleTrTd}>{item.Id}</td>
@@ -93,7 +109,7 @@ class DemoPage extends Component{
                     <td key="7" style={styleTrTd}>{item.appVersion}</td>
                     <td key="8" style={styleTrTd}>{item.deviceId}</td>
                     <td key="9" style={styleTrTd}>{item.times}</td>
-                    <td key="10" style={styleTrTd}>{item.time}</td>
+                    <td key="10" style={styleTrTd}>{date.Format('yyyy-MM-dd hh:mm')}</td>
                 </tr>
             )
         });
@@ -146,7 +162,7 @@ class DemoPage extends Component{
         const {pageIndex} = this.props;
         window.addEventListener('resize', this.handleResize.bind(this));
         const {innerWidth,innerHeight} = window;
-        this.setState({height:innerHeight-250,tableWidth:innerWidth-170<950?950:innerWidth-170});
+        this.setState({height:innerHeight-250,tableWidth:innerWidth-170<990?990:innerWidth-170});
         this.props.dispatch(showLoading('正在获取数据,请稍后...'));
         this.props.dispatch(getLoginList(pageIndex,this.onGetDataCb.bind(this)));
     }

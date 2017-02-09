@@ -31,5 +31,5 @@ export const tableHeadProp2 = [
     {name:'应用版本',width:'80px'},
     {name:'设备号',width:'80px'},
     {name:'登录次数',width:'80px'},
-    {name:'登录时间',width:'80px'}
+    {name:'登录时间',width:'120px'}
 ];

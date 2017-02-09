@@ -4,7 +4,7 @@
 import 'es6-promise'
 import fetch from 'isomorphic-fetch'
 
-const ADAPTER_URL = 'http://10.10.61.175:10001';//'http://127.0.0.1:10006';
+const ADAPTER_URL = 'http://10.10.61.175:10001';
 
 export function fetch_get_with_params(url,params){
     let url2 = url;

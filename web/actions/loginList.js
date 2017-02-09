@@ -54,6 +54,8 @@ export function getLoginListSearch(text,cb=null){
                 this.dispatch(actionHelper.createPayloadAction(ActionTypes.update_login_list, data.data));
                 if(data.pageSize) {
                     this.dispatch(actionHelper.createPayloadAction(ActionTypes.update_login_list_page_num, data.pageSize))
+                } else {
+                    this.dispatch(actionHelper.createPayloadAction(ActionTypes.update_login_list_page_num, 0))
                 }
             }
         }

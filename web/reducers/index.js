@@ -16,7 +16,9 @@ export const rootReducer = nestCombineReducers({
         overLayList:handleActionsReducor([],view.overLayList)
     },
     loginList:{
-        list:handleActionsReducor([],loginList.loginList)
+        list:handleActionsReducor([],loginList.loginList),
+        pageIndex:handleActionsReducor(0,loginList.loginListPageIndex),
+        pageNum:handleActionsReducor(0,loginList.loginListPageNum)
     }
 });
 

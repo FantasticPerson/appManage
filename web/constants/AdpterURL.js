@@ -7,3 +7,4 @@
 // export const POST_REMOVE_USER = 'customer/remove';
 // export const GET_DETAIL_CUSTOMERS = 'api/customer/info';
 export const GET_LOGIN_LIST='api/loginList';
+export const GET_LOGIN_SEARCH='api/loginList/search';

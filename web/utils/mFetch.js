@@ -91,6 +91,13 @@ function filterHttpStatusResponse(response,url) {
 
 function filterResponseJson(resJson,url){
     if (resJson.success) {
+        if(resJson.Data){
+            if(resJson.pageSize) {
+                return {data: resJson.Data, pageSize: resJson.pageSize};
+            } else {
+                return {data:resJson.Data};
+            }
+        }
         return resJson.data || resJson.message;
     } else {
         console.error(`${url} Error: resJson.message ${resJson.message}`);

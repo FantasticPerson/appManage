@@ -7,9 +7,8 @@
 import React,{Component,PropTypes} from 'react';
 import {connect} from 'react-redux';
 import * as ViewState from '../../constants/view';
-import {mockAppList} from '../../constants/mockData'
-import {showLoading} from '../../actions/view'
-import {getLoginList} from '../../actions/loginList'
+import {getLoginList,getLoginListSearch} from '../../actions/loginList'
+import {showLoading,removeLoading} from '../../actions/view'
 
 class DemoPage extends Component{
     constructor(){
@@ -18,39 +17,62 @@ class DemoPage extends Component{
     }
 
     renderFooter(){
-        const {data} = this.props;
-        let length = Math.ceil(70/20);
-        if(length <= 1) {
-            return;
-        }
-        let tabs = [];
-        for(let i = 0;i<length;i++){
-            let isCurrent = (i == 1);
-            let className = "tr-multi-list-tab" + (isCurrent ? " tr-multi-list-curt-tab" : "");
-            tabs.push(
-                <div key={i} className={className} onClick={()=>{this.onTabClick(i)}}>{i}</div>
+        const {pageIndex,pageNum} = this.props;
+        if(pageNum > 0) {
+            let tabs = [];
+            for (let i = 0; i < pageNum; i++) {
+                let isCurrent = (i == pageIndex);
+                let className = "tr-multi-list-tab" + (isCurrent ? " tr-multi-list-curt-tab" : "");
+                tabs.push(
+                    <div key={i} className={className} onClick={() => {
+                        this.onTabClick(i)
+                    }}>{i}</div>
+                )
+            }
+            return (
+                <div className="tr-multi-list-footer-container">
+                    <div className="tr-multi-list-pre-tab" onClick={() => {
+                        this.onPreClick()
+                    }}>{'上一页'}</div>
+                    <div className="tr-multi-list-tab-container">{tabs}</div>
+                    <div className="tr-multi-list-next-tab" onClick={() => {
+                        this.onNextClick()
+                    }}>{'下一页'}</div>
+                    <div className="tr-multi-list-msg">{'共' + length + '页/' + '70' + '条纪录'}</div>
+                </div>
             )
         }
-        return (
-            <div className="tr-multi-list-footer-container">
-                <div className="tr-multi-list-pre-tab" onClick={()=>{this.onPreClick()}}>{'上一页'}</div>
-                <div className="tr-multi-list-tab-container">{tabs}</div>
-                <div className="tr-multi-list-next-tab" onClick={()=>{this.onNextClick()}}>{'下一页'}</div>
-                <div className="tr-multi-list-msg">{'共'+length+'页/'+'70'+'条纪录'}</div>
-            </div>
-        )
     }
 
-    onTabClick(){
-
+    onTabClick(index){
+        const {pageIndex} = this.props;
+        if(index == pageIndex){
+            return;
+        }
+        this.props.dispatch(showLoading('正在获取数据,请稍后...'));
+        this.props.dispatch(getLoginList(index,this.onGetDataCb.bind(this)));
     }
 
     onPreClick(){
-
+        const {pageIndex} = this.props;
+        if(pageIndex == 0){
+            return;
+        }
+        let index = pageIndex -1 < 0 ? 0 : pageIndex -1;
+        console.log(index);
+        this.props.dispatch(showLoading('正在获取数据,请稍后...'));
+        this.props.dispatch(getLoginList(index,this.onGetDataCb.bind(this)));
     }
 
     onNextClick(){
-
+        const {pageIndex} = this.props;
+        if(pageIndex == 3){
+            return;
+        }
+        let index = pageIndex +1 > 4 ? 4 : pageIndex +1;
+        console.log(index);
+        this.props.dispatch(showLoading('正在获取数据,请稍后...'));
+        this.props.dispatch(getLoginList(index,this.onGetDataCb.bind(this)));
     }
 
     render(){
@@ -112,23 +134,33 @@ class DemoPage extends Component{
     onKeyDown(e){
         if(e.keyCode == "13")
         {
-            console.log('lalal')
+            let value = e.target.value;
+            let hasKeyWord= value.length > 0;
+            if(hasKeyWord) {
+                this.props.dispatch(getLoginListSearch(value, this.onGetDataCb.bind(this)));
+            } else {
+                const {pageIndex} = this.props;
+                this.props.dispatch(getLoginList(pageIndex,this.onGetDataCb.bind(this)));
+            }
         }
     }
 
     componentDidMount(){
+        const {pageIndex} = this.props;
         window.addEventListener('resize', this.handleResize.bind(this));
         const {innerHeight} = window;
         this.setState({height:innerHeight-250});
-        // this.props.dispatch(showLoading('正在获取数据,请稍后...'));
-        this.props.dispatch(getLoginList(1));
+        this.props.dispatch(showLoading('正在获取数据,请稍后...'));
+        this.props.dispatch(getLoginList(pageIndex,this.onGetDataCb.bind(this)));
+    }
+
+    onGetDataCb(bool){
+        this.props.dispatch(removeLoading());
     }
 
     handleResize(){
         const {innerWidth,innerHeight} = window;
         this.setState({height:innerHeight-250});
-        // let auto = Math.max(innerWidth - 1070,0)/970 + 1;
-        // this.props.dispatch(updateAutoRate(auto));
     }
 }
 
@@ -136,7 +168,9 @@ class DemoPage extends Component{
 function mapStateToProps(state) {
     return {
         title: state.demoPage.title,
-        loginList : state.loginList.list
+        loginList : state.loginList.list,
+        pageIndex:state.loginList.pageIndex,
+        pageNum:state.loginList.pageNum
     }
 }
 

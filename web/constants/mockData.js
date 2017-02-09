@@ -2,6 +2,22 @@
  * Created by wdd on 2017/2/8.
  */
 export const useMock = true;
+
+export const mockAppListSearch = [
+    {
+        "Id": 1,
+        "name": "王鹏",
+        "departName": "开发实施五组",
+        "userName": "18261521439",
+        "terminalType": "",
+        "phoneType": "",
+        "sysVersion": "",
+        "appVersion": "",
+        "deviceId": "",
+        "times": 13,
+        "time": "1484126318"
+    }
+];
 export const mockAppList = [
     {
         "Id": 1,

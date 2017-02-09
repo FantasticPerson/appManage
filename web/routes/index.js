@@ -14,7 +14,10 @@ const index = {
     childRoutes:[
         main,
         LoginList
-    ]
+    ],
+    indexRoute: {
+        onEnter: (nextState, replace)=>replace('/loginList')
+    }
 };
 
 export default index;

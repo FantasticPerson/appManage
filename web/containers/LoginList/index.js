@@ -65,12 +65,10 @@ class DemoPage extends Component{
     }
 
     onNextClick(){
-        const {pageIndex} = this.props;
-        if(pageIndex == 3){
+        const {pageIndex,pageNum} = this.props;
+        if(pageIndex >= pageNum-1){
             return;
         }
-        let index = pageIndex +1 > 4 ? 4 : pageIndex +1;
-        console.log(index);
         this.props.dispatch(showLoading('正在获取数据,请稍后...'));
         this.props.dispatch(getLoginList(index,this.onGetDataCb.bind(this)));
     }
@@ -136,9 +134,11 @@ class DemoPage extends Component{
             let value = e.target.value;
             let hasKeyWord= value.length > 0;
             if(hasKeyWord) {
+                this.props.dispatch(showLoading('正在获取数据,请稍后...'));
                 this.props.dispatch(getLoginListSearch(value, this.onGetDataCb.bind(this)));
             } else {
                 const {pageIndex} = this.props;
+                this.props.dispatch(showLoading('正在获取数据,请稍后...'));
                 this.props.dispatch(getLoginList(pageIndex,this.onGetDataCb.bind(this)));
             }
         }

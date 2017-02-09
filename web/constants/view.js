@@ -21,15 +21,15 @@ export const tableHeadThProp = [
 ];
 
 export const tableHeadProp2 = [
-    {name:'Id',width:'40px'},
-    {name:'姓名',width:'80px'},
-    {name:'部门',width:'120px'},
-    {name:'电话号码',width:'80px'},
-    {name:'终端类型',width:'80px'},
-    {name:'电话类型',width:'80px'},
-    {name:'系统版本',width:'80px'},
-    {name:'应用版本',width:'80px'},
-    {name:'设备号',width:'80px'},
-    {name:'登录次数',width:'80px'},
-    {name:'登录时间',width:'120px'}
+    // {name:'Id',width:'40px'},
+    {name:'姓名',width:'90px'},
+    {name:'部门',width:'130px'},
+    {name:'电话号码',width:'90px'},
+    {name:'终端类型',width:'90px'},
+    {name:'手机型号',width:'90px'},
+    {name:'系统版本',width:'90px'},
+    {name:'应用版本',width:'90px'},
+    // {name:'设备号',width:'80px'},
+    {name:'登录次数',width:'100px'},
+    {name:'登录时间',width:'140px'}
 ];

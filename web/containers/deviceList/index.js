@@ -10,7 +10,7 @@ import {showLoading} from '../../actions/view'
 class DemoPage extends Component{
     constructor(){
         super();
-        this.state= {view:ViewState.view_loading};
+        this.state= {view:ViewState.view_loading,height:'750px',tableWidth:'950px'};
     }
 
     render(){
@@ -69,7 +69,7 @@ class DemoPage extends Component{
     }
 
     componentDidMount(){
-        this.props.dispatch(showLoading('正在获取数据,请稍后...'));
+        // this.props.dispatch(showLoading('正在获取数据,请稍后...'));
     }
 }
 

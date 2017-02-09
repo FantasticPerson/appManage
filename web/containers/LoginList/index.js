@@ -99,7 +99,7 @@ class DemoPage extends Component{
             let date = new Date(item.time*1000);
             return (
                 <tr key={index} style={{height:'50px'}}>
-                    <td key="0" style={styleTrTd}>{item.Id}</td>
+                    {/*<td key="0" style={styleTrTd}>{item.Id}</td>*/}
                     <td key="1" style={styleTrTd}>{item.name}</td>
                     <td key="2" style={styleTrTd}>{item.departName}</td>
                     <td key="3" style={styleTrTd}>{item.userName}</td>
@@ -107,7 +107,7 @@ class DemoPage extends Component{
                     <td key="5" style={styleTrTd}>{item.phoneType}</td>
                     <td key="6" style={styleTrTd}>{item.sysVersion}</td>
                     <td key="7" style={styleTrTd}>{item.appVersion}</td>
-                    <td key="8" style={styleTrTd}>{item.deviceId}</td>
+                    {/*<td key="8" style={styleTrTd}>{item.deviceId}</td>*/}
                     <td key="9" style={styleTrTd}>{item.times}</td>
                     <td key="10" style={styleTrTd}>{date.Format('yyyy-MM-dd hh:mm')}</td>
                 </tr>

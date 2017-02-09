@@ -1,10 +1,10 @@
 /**
  * Created by dandan.wu on 16/9/21.
  */
-import Main from '../containers/main/index'
+import Main from '../containers/deviceList/index'
 
-const demoPage = {
-    path: 'main',
+const deviceList = {
+    path: 'deviceList',
     component: Main,
     onEnter: (nextState, replace, cb) => {
         cb();
@@ -14,4 +14,4 @@ const demoPage = {
     }
 };
 
-export default demoPage;
+export default deviceList;

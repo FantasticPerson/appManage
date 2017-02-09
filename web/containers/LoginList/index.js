@@ -106,7 +106,7 @@ class DemoPage extends Component{
                         <h3 className="app_header_title">{'登陆管理'}</h3>
                     </div>
                     <div className="app_tool_content">
-                        <input style={{width:(tableWidth-50)+'px'}} className="app_tool_search" type="text" placeholder="请输入姓名" onKeyDown={(e)=>{
+                        <input style={{width:tableWidth+'px'}} className="app_tool_search" type="text" placeholder="请输入姓名" onKeyDown={(e)=>{
                             this.onKeyDown(e);
                         }}/>
                     </div>

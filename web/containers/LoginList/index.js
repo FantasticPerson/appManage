@@ -55,13 +55,11 @@ class DemoPage extends Component{
 
     onPreClick(){
         const {pageIndex} = this.props;
-        if(pageIndex == 0){
+        if(pageIndex <= 0){
             return;
         }
-        let index = pageIndex -1 < 0 ? 0 : pageIndex -1;
-        console.log(index);
         this.props.dispatch(showLoading('正在获取数据,请稍后...'));
-        this.props.dispatch(getLoginList(index,this.onGetDataCb.bind(this)));
+        this.props.dispatch(getLoginList(pageIndex -1,this.onGetDataCb.bind(this)));
     }
 
     onNextClick(){
@@ -70,7 +68,7 @@ class DemoPage extends Component{
             return;
         }
         this.props.dispatch(showLoading('正在获取数据,请稍后...'));
-        this.props.dispatch(getLoginList(index,this.onGetDataCb.bind(this)));
+        this.props.dispatch(getLoginList(pageIndex + 1,this.onGetDataCb.bind(this)));
     }
 
     render(){

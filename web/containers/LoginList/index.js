@@ -38,7 +38,7 @@ class DemoPage extends Component{
                     <div className="tr-multi-list-next-tab" onClick={() => {
                         this.onNextClick()
                     }}>{'下一页'}</div>
-                    <div className="tr-multi-list-msg">{'共' + length + '页/' + '70' + '条纪录'}</div>
+                    <div className="tr-multi-list-msg">{'共' + pageNum + '页'}</div>
                 </div>
             )
         }

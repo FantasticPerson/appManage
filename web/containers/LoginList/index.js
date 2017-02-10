@@ -26,7 +26,7 @@ class DemoPage extends Component{
                 tabs.push(
                     <div key={i} className={className} onClick={() => {
                         this.onTabClick(i)
-                    }}>{i}</div>
+                    }}>{i+1}</div>
                 )
             }
             return (
@@ -99,7 +99,7 @@ class DemoPage extends Component{
             let date = new Date(item.time*1000);
             return (
                 <tr key={index} style={{height:'50px'}}>
-                    {/*<td key="0" style={styleTrTd}>{item.Id}</td>*/}
+                    <td key="0" style={styleTrTd}>{item.Id}</td>
                     <td key="1" style={styleTrTd}>{item.name}</td>
                     <td key="2" style={styleTrTd}>{item.departName}</td>
                     <td key="3" style={styleTrTd}>{item.userName}</td>

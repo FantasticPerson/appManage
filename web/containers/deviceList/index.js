@@ -24,9 +24,9 @@ class DemoPage extends Component{
         let styleTrTd = {textAlign:'center',borderBottom:'1px dashed #ececec'};
         let bodyContent = listData.map((item,index)=>{
             let btnItems = [
-                <div className="tool_btn_info">{'应用配置'}</div>,
-                <div className="tool_btn_authority">{'权限配置'}</div>,
-                <div className="tool_btn_del">{'删除'}</div>
+                <div className="tool_btn_info" onClick={()=>{}}>{'应用配置'}</div>,
+                <div className="tool_btn_authority" onClick={()=>{}}>{'权限配置'}</div>,
+                <div className="tool_btn_del" onClick={()=>{}}>{'删除'}</div>
             ];
             return (
                 <tr key={index} style={{height:'50px'}}>
@@ -60,9 +60,23 @@ class DemoPage extends Component{
                             </tr>
                         </thead>
                         <tbody>
-                        {bodyContent}
+                        {/*{bodyContent}*/}
                         </tbody>
                     </table>
+                </div>
+                <div className="">
+                    <div>
+                        <div>
+                            <span>{'应用图标'}</span>
+                            <div></div>
+                        </div>
+                        <div></div>
+                    </div>
+                    <div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                    <div></div>
                 </div>
             </div>
         )

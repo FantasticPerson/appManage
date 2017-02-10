@@ -21,7 +21,7 @@ export const tableHeadThProp = [
 ];
 
 export const tableHeadProp2 = [
-    {name:'Id',width:'40px'},
+    {name:'',width:'40px'},
     {name:'姓名',width:'90px'},
     {name:'部门',width:'120px'},
     {name:'电话号码',width:'90px'},

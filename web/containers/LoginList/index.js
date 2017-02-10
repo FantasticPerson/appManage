@@ -99,7 +99,7 @@ class DemoPage extends Component{
             let date = new Date(item.time*1000);
             return (
                 <tr key={index} style={{height:'50px'}}>
-                    <td key="0" style={styleTrTd}>{item.Id}</td>
+                    <td key="0" style={styleTrTd}>{index+1}</td>
                     <td key="1" style={styleTrTd}>{item.name}</td>
                     <td key="2" style={styleTrTd}>{item.departName}</td>
                     <td key="3" style={styleTrTd}>{item.userName}</td>
@@ -117,7 +117,7 @@ class DemoPage extends Component{
             <div>
                 <div className="app_header_content">
                     <div className="app_header_content_container">
-                        <h3 className="app_header_title">{'登陆管理'}</h3>
+                        <h3 className="app_header_title">{'登陆统计'}</h3>
                     </div>
                     <div className="app_tool_content">
                         <input style={{width:tableWidth+'px'}} className="app_tool_search" type="text" placeholder="请输入姓名" onKeyDown={(e)=>{

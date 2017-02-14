@@ -22,6 +22,7 @@ export function fetch_post_png(url,data){
 }
 
 export function fetch_post(url,data,isPng=false){
+    console.log(data);
     let url2 = `${ADAPTER_URL}/${url}`;
     let ContentType = isPng ? 'image/png' : 'application/x-www-form-urlencoded';
     return fetch(url2,{

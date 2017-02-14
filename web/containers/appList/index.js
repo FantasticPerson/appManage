@@ -3,10 +3,7 @@
  */
 import React,{Component,PropTypes} from 'react';
 import {connect} from 'react-redux';
-import {mockAppList} from '../../constants/mockData'
 import {showLoading,showOverLayByName,removeLoading} from '../../actions/view'
-import Tree,{TreeNode} from 'rc-tree';
-import 'rc-tree/assets/index.css'
 import * as ViewState from '../../constants/view';
 import * as ViewConstants from '../../constants/OverLayNames'
 import * as appActions from '../../actions/appList'

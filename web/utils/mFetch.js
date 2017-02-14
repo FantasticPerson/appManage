@@ -4,24 +4,29 @@
 import 'es6-promise'
 import fetch from 'isomorphic-fetch'
 
-const ADAPTER_URL = 'http://10.10.61.175:10001';
+const ADAPTER_URL = 'http://10.10.61.193:10001';
 
 export function fetch_get_with_params(url,params){
     let url2 = url;
     if(params.length > 0){
         url2 = url2 + '?'+params[0]['key']+'='+params[0]['value'];
-        for(var i=1;i<params.length;i++){
+        for(let i=1;i<params.length;i++){
             url2  = url2 + '&' + params[i]['key']+'='+params[i]['value'];
         }
     }
     return this.fetch_get(url2);
 }
 
-export function fetch_post(url,data){
+export function fetch_post_png(url,data){
+    return this.fetch_post(url,data,false);
+}
+
+export function fetch_post(url,data,isPng=false){
     let url2 = `${ADAPTER_URL}/${url}`;
+    let ContentType = isPng ? 'image/png' : 'application/x-www-form-urlencoded';
     return fetch(url2,{
             headers: {
-                "Content-Type":"application/x-www-form-urlencoded",
+                "Content-Type":ContentType,
             },
             method: 'post',
             body:data

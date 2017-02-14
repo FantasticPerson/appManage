@@ -101,7 +101,7 @@ class DemoPage extends Component{
                 <tr key={index} style={{height:'50px'}}>
                     <td key="0" style={styleTrTd}>{index+1}</td>
                     <td key="1" style={styleTrTd}>{item.name}</td>
-                    <td key="2" style={styleTrTd}>{item.departName}</td>
+                    <td key="2" style={styleTrTd}>{item.departName || item.childode}</td>
                     <td key="3" style={styleTrTd}>{item.userName}</td>
                     <td key="4" style={styleTrTd}>{item.terminalType}</td>
                     <td key="5" style={styleTrTd}>{item.phoneType}</td>

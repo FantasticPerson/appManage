@@ -1,10 +1,10 @@
 /**
  * Created by dandan.wu on 16/9/21.
  */
-import Main from '../containers/deviceList/index'
+import Main from '../containers/appList/index'
 
 const deviceList = {
-    path: 'deviceList',
+    path: 'appList',
     component: Main,
     onEnter: (nextState, replace, cb) => {
         cb();

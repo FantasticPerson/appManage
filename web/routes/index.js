@@ -2,7 +2,7 @@
  * Created by dandan.wu on 16/9/13.
  */
 import indexApp from '../containers/index'
-import deviceList from './deviceList'
+import appList from './appList'
 import LoginList from './loginList'
 
 const index = {
@@ -12,11 +12,11 @@ const index = {
         cb();
     },
     childRoutes:[
-        deviceList,
+        appList,
         LoginList
     ],
     indexRoute: {
-        onEnter: (nextState, replace)=>replace('/loginList')//[/loginList || /deviceList]
+        onEnter: (nextState, replace)=>replace('/appList')//[/loginList || /appList]
     }
 };
 

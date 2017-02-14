@@ -3,30 +3,34 @@
  */
 import React,{Component,PropTypes} from 'react';
 import {connect} from 'react-redux';
-import * as ViewState from '../../constants/view';
 import {mockAppList} from '../../constants/mockData'
-import {showLoading} from '../../actions/view'
+import {showLoading,showOverLayByName,removeLoading} from '../../actions/view'
+import Tree,{TreeNode} from 'rc-tree';
+import 'rc-tree/assets/index.css'
+import * as ViewState from '../../constants/view';
+import * as ViewConstants from '../../constants/OverLayNames'
+import * as appActions from '../../actions/appList'
 
-class DemoPage extends Component{
+class DeviceList extends Component{
     constructor(){
         super();
         this.state= {view:ViewState.view_loading,height:'750px',tableWidth:'950px'};
+        this.id = null;
     }
 
     render(){
         const {appList} = this.props;
-        let listData = appList ? appList : mockAppList;
         let headThArr = ViewState.tableHeadThProp.map((item,index)=>{
             return (
                 <th style={{width:item.width,textAlign:'center',color:'#7BBFE6'}} key={index}>{item.name}</th>
             )
         });
         let styleTrTd = {textAlign:'center',borderBottom:'1px dashed #ececec'};
-        let bodyContent = listData.map((item,index)=>{
+        let bodyContent = appList.map((item,index)=>{
             let btnItems = [
-                <div className="tool_btn_info" onClick={()=>{}}>{'应用配置'}</div>,
-                <div className="tool_btn_authority" onClick={()=>{}}>{'权限配置'}</div>,
-                <div className="tool_btn_del" onClick={()=>{}}>{'删除'}</div>
+                <div className="tool_btn_info" key={'8'} onClick={()=>{this.onConfigClick(item)}}>{'应用配置'}</div>,
+                <div className="tool_btn_authority" key={'9'} onClick={()=>{this.onAdminConfig(item['id'])}}>{'权限配置'}</div>,
+                <div className="tool_btn_del" key={'10'} onClick={()=>{this.onDeleteClick(item['id'])}}>{'删除'}</div>
             ];
             return (
                 <tr key={index} style={{height:'50px'}}>
@@ -47,7 +51,7 @@ class DemoPage extends Component{
                     <h3 className="app_header_title">{'应用管理'}</h3>
                 </div>
                 <div className="app_tool_content">
-                    <div className="app_tool_add">
+                    <div className="app_tool_add"  onClick={(e)=>{this.onConfigClick()}}>
                         <div className="app_tool_add_icon">{'+'}</div>
                         <div className="app_tool_add_text">{'登记应用'}</div>
                     </div>
@@ -60,38 +64,49 @@ class DemoPage extends Component{
                             </tr>
                         </thead>
                         <tbody>
-                        {/*{bodyContent}*/}
+                        {bodyContent}
                         </tbody>
                     </table>
-                </div>
-                <div className="">
-                    <div>
-                        <div>
-                            <span>{'应用图标'}</span>
-                            <div></div>
-                        </div>
-                        <div></div>
-                    </div>
-                    <div>
-                        <div></div>
-                        <div></div>
-                    </div>
-                    <div></div>
                 </div>
             </div>
         )
     }
 
+    onConfigClick(item){
+        this.props.dispatch(showOverLayByName(ViewConstants.APP_CONFIG_VIEW,item));
+    }
+
+    onDeleteClick(id){
+        this.props.dispatch(showOverLayByName(ViewConstants.CONFIRM_MODAL_VIEW,{id:id}));
+    }
+
+    onAdminConfig(id){
+        this.id = id;
+        this.props.dispatch(showLoading('正在获取数据,请稍后...'));
+        this.props.dispatch(appActions.getUserList(this.getUserListCb.bind(this)));
+    }
+
+    getUserListCb(){
+        this.props.dispatch(removeLoading());
+        this.props.dispatch(showOverLayByName(ViewConstants.ADMIN_CONFIG_VIEW,{id:this.id}));
+    }
+
     componentDidMount(){
-        // this.props.dispatch(showLoading('正在获取数据,请稍后...'));
+        this.props.dispatch(showLoading('正在获取数据,请稍后...'));
+        this.props.dispatch(appActions.getAppList(this.onGetAppListCb.bind(this)));
+    }
+
+    onGetAppListCb(){
+        this.props.dispatch(removeLoading());
     }
 }
 
 
 function mapStateToProps(state) {
     return {
-        title: state.demoPage.title
+        appList: state.appList.list,
+        userList:state.appList.userList
     }
 }
 
-export default connect(mapStateToProps)(DemoPage);
+export default connect(mapStateToProps)(DeviceList);

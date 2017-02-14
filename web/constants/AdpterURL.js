@@ -1,10 +1,12 @@
 /**
  * Created by dandan.wu on 16/9/21.
  */
-// export const GET_USER_LIST = 'customer/title';
-// export const POST_NEW_USER_DATA = 'customer/add';
-// export const POST_UPDATE_USER_DATA = 'customer/update';
-// export const POST_REMOVE_USER = 'customer/remove';
-// export const GET_DETAIL_CUSTOMERS = 'api/customer/info';
 export const GET_LOGIN_LIST='api/loginList';
-export const GET_LOGIN_SEARCH='api/loginList/search';
+
+export const GET_APP_LIST='app/appList';
+export const GET_USER_LIST='app/emps';
+export const POST_CREATE_APP='app/create';
+export const POST_UPDATE_APP='app/update';
+export const POST_DELETE_APP='app/delete';
+export const POST_POST_ICON='app/appIcon';
+export const POST_ASSIGN_ADMIN='app/assign';

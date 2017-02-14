@@ -22,7 +22,7 @@ let devServer = new WebpackDevServer(webpack(config), {
     },
     proxy: {
         '*': {
-            target: 'http://10.10.61.175:10001/',
+            target: 'http://10.10.61.193:10001/',
             secure: false,
         }
     },

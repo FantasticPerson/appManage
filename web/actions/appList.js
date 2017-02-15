@@ -59,7 +59,7 @@ export function updateApp(data,cb){
     } else {
         return createRemoteOnlyDAO({
             fromRemote:function () {
-                return myFetch.fetch_post_png(AdapterURL.POST_UPDATE_APP,data);
+                return myFetch.fetch_post(AdapterURL.POST_UPDATE_APP,data);
             },
             onEnd: function(data) {
                 if(!actionHelper.isError(data)) {
@@ -97,7 +97,7 @@ export function delApp(data,cb){
     } else {
         return createRemoteOnlyDAO({
             fromRemote:function () {
-                return myFetch.fetch_post_png(AdapterURL.POST_DELETE_APP,data);
+                return myFetch.fetch_post(AdapterURL.POST_DELETE_APP,data);
             },
             onEnd: function(data) {
                 if(!actionHelper.isError(data)) {

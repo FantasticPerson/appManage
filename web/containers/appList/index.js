@@ -69,12 +69,26 @@ class DeviceList extends Component{
         )
     }
 
-    onConfigClick(item){
+    onConfigClick(item=null){
         this.props.dispatch(showOverLayByName(ViewConstants.APP_CONFIG_VIEW,item));
     }
 
     onDeleteClick(id){
-        this.props.dispatch(showOverLayByName(ViewConstants.CONFIRM_MODAL_VIEW,{id:id}));
+        this.id = id;
+        this.props.dispatch(showOverLayByName(ViewConstants.CONFIRM_MODAL_VIEW,{id:id,confirmCb:this.onDelConfirmCb.bind(this)}));
+    }
+
+    onDelConfirmCb(bool){
+        if(bool){
+            this.props.dispatch(showLoading('正在删除,请稍候...'));
+            this.props.dispatch(appActions.delApp('id='+this.id,this.onDelCb.bind(this)));
+        }
+    }
+
+    onDelCb(){
+        this.props.dispatch(removeLoading());
+        this.props.dispatch(showLoading('正在获取数据,请稍后...'));
+        this.props.dispatch(appActions.getAppList(this.getUserListCb.bind(this)));
     }
 
     onAdminConfig(id){

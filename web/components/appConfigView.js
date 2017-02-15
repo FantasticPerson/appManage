@@ -15,7 +15,6 @@ export default class AppConfigViewModal extends Component{
 
     render(){
         const {data,userList} = this.props;
-        console.log(data);
         const {imageUrl} = this.state;
         return (
             <BaseModal>
@@ -51,9 +50,9 @@ export default class AppConfigViewModal extends Component{
                             <div>
                                 <div className="app_config_middle_text">{'应用类型：'}</div>
                                 <select ref={'appType'} style={{height:'26px',width:'174px'}} className="config_input">
-                                    <option value="0">{'0'}</option>
-                                    <option value="1">{'1'}</option>
-                                    <option value="2">{'2'}</option>
+                                    <option value='0'>{'安卓'}</option>
+                                    <option value="1">{'IOS'}</option>
+                                    <option value="2">{'PC'}</option>
                                 </select>
                             </div>
                             <div style={{marginTop:'20px'}}>
@@ -113,16 +112,25 @@ export default class AppConfigViewModal extends Component{
     }
 
     onConfirmClick(){
+        const {data} = this.props;
         const {appName,appType,andEntrance,pcEntrance,downloadUrl,iosEntrance,singleEntrance} = this.refs;
         let dataArr = 'name='+appName.value;
         dataArr = dataArr + '&icon='+'ww';
-        dataArr = dataArr + '&iosApp='+iosEntrance.value;
         dataArr = dataArr + '&iosEntrance='+iosEntrance.value;
-        dataArr = dataArr + '&andApp='+andEntrance.value;
         dataArr = dataArr + '&andEntrance='+andEntrance.value;
         dataArr = dataArr + '&pcEntrance='+ pcEntrance.value;
         dataArr = dataArr + '&loginEntrance'+singleEntrance.value;
-        this.props.dispatch(addApp(dataArr,this.onAddOrUpdateCb.bind(this)));
+        if(appType.value == '安卓'){
+            dataArr = dataArr + '&iosApp='+downloadUrl.value;
+        } else if(appType.value == 'IOS'){
+            dataArr = dataArr + '&andApp='+downloadUrl.value;
+        }
+        if(!data) {
+            this.props.dispatch(addApp(dataArr, this.onAddOrUpdateCb.bind(this)));
+        } else {
+            dataArr = dataArr + '&id='+data.id;
+            this.props.dispatch(updateApp(dataArr, this.onAddOrUpdateCb.bind(this)));
+        }
     }
 
     onAddOrUpdateCb(){

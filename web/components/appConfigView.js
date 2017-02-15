@@ -97,7 +97,7 @@ export default class AppConfigViewModal extends Component{
         let reader = new FileReader();
         reader.onload = function(){
             console.log(reader.result);
-            this.props.dispatch(uploadPng(reader.result,this.onUploadImageCb.bind(this)));
+            this.props.dispatch(uploadPng({appIcon:reader.result},this.onUploadImageCb.bind(this)));
             this.setState({imageUrl:reader.result})
         }.bind(this);
         reader.onerror=function(evt){

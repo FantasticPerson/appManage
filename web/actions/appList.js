@@ -78,7 +78,7 @@ export function addApp(data,cb){
     } else {
         return createRemoteOnlyDAO({
             fromRemote:function () {
-                return myFetch.fetch_post_png(AdapterURL.POST_CREATE_APP,data);
+                return myFetch.fetch_post(AdapterURL.POST_CREATE_APP,data);
             },
             onEnd: function(data) {
                 if(!actionHelper.isError(data)) {

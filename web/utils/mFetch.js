@@ -55,6 +55,7 @@ export function fetch_post(url,data,isPng=false){
 }
 
 export function fetch_get(url){
+    console.log(url);
     let url2 = `${ADAPTER_URL}/${url}`;
     return fetch(url2,{
         headers: {

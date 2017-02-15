@@ -49,7 +49,7 @@ export default class AppConfigViewModal extends Component{
                         <div className="app_config_middle_left">
                             <div>
                                 <div className="app_config_middle_text">{'应用类型：'}</div>
-                                <select ref={'appType'} style={{height:'26px',width:'174px'}} className="config_input">
+                                <select ref={'appType'} className="config_input">
                                     <option value='0'>{'安卓'}</option>
                                     <option value="1">{'IOS'}</option>
                                     <option value="2">{'PC'}</option>

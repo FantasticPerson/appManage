@@ -18,7 +18,7 @@ export function fetch_get_with_params(url,params){
 }
 
 export function fetch_post_png(url,data){
-    return this.fetch_post(url,data,false);
+    return this.fetch_post(url,data,true);
 }
 
 export function fetch_post(url,data,isPng=false){

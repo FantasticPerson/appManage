@@ -54,10 +54,11 @@ export function fetch_post(url,data,isPng=false){
     })
 }
 
-export function fetch_get(url){
+export function fetch_get(url,includeCookie){
     console.log(url);
     let url2 = `${ADAPTER_URL}/${url}`;
     return fetch(url2,{
+        credentials: 'include',
         headers: {
             Accept:'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
         },

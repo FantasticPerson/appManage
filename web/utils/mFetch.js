@@ -105,8 +105,8 @@ function filterResponseJson(resJson,url){
     } else if(resJson.hasOwnProperty('depts')){
         return {depts:resJson.depts,emps:resJson.emps}
     }
-    else if (resJson.success) {
-        return resJson.data || resJson.message;
+    else if (resJson.success || (resJson.Warp &&　resJson.Warp.retCode == '0') || (resJson.retCode == '0')) {
+        return resJson.data || resJson.message || resJson;
     } else {
         console.error(`${url} Error: resJson.message ${resJson.message}`);
         throw new Error('获取数据失败', resJson.message);

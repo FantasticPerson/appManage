@@ -33,6 +33,7 @@ export default class AdminConfigView extends Component{
     }
 
     onConfirmClick(){
+        const {id} = this.props.data;
         const {treeView} = this.refs;
         let selectIds = treeView.getCheclKeys();
         console.log(selectIds);
@@ -42,7 +43,7 @@ export default class AdminConfigView extends Component{
         }
         if(str.length > 0) {
             this.props.dispatch(showLoading());
-            this.props.dispatch(AssignUserList('addList='+str, this.onAssignUserListCb.bind(this)));
+            this.props.dispatch(AssignUserList('appId='+id+'&addList='+str, this.onAssignUserListCb.bind(this)));
         } else {
             this.props.dispatch(removeOverLayByName(OverLayNames.ADMIN_CONFIG_VIEW));
         }

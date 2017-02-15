@@ -45,26 +45,25 @@ export default class AppConfigViewModal extends Component{
                         <div className="app_config_middle_left" style={{marginLeft:'30px'}}>
                             <div>
                                 <p className="app_config_middle_text">{'应用名称：'}</p>
-                                <input ref={'appName'} value={(data && data.name) || ''} className="config_input" type="text"/>
+                                <input ref={'appName'} defaultValue={(data && data.name) || ''} className="config_input" type="text"/>
                             </div>
-
                             <div style={{marginTop:'10px'}}>
                                 <div className="app_config_middle_text">{'IOS下载地址：'}</div>
-                                <input ref={'iosUrl'} value={(data && data.iosApp) || ''} className="config_input" type="text"/>
+                                <input ref={'iosUrl'} defaultValue={(data && data.iosApp) || ''} className="config_input" type="text"/>
                             </div>
                             <div style={{marginTop:'10px'}}>
                                 <div className="app_config_middle_text">{'安卓下载地址：'}</div>
-                                <input ref={'andUrl'} value={(data && data.andApp) || ''} className="config_input" type="text"/>
+                                <input ref={'andUrl'} defaultValue={(data && data.andApp) || ''} className="config_input" type="text"/>
                             </div>
                             <div style={{marginTop:'10px'}}>
                                 <div className="app_config_middle_text">{'PC单点登陆地址：'}</div>
-                                <input ref={'pcUrl'} value={(data && data.loginEntrance) || ''} className="config_input" type="text"/>
+                                <input ref={'pcUrl'} defaultValue={(data && data.loginEntrance) || ''} className="config_input" type="text"/>
                             </div>
                         </div>
                         <div className="app_config_middle_right">
                             <div>
                                 <div className="app_config_middle_text">{'应用类型：'}</div>
-                                <select ref={'appType'} value={(data && data.type) || '0'} className="config_input">
+                                <select ref={'appType'} defaultValue={(data && data.type) || '0'} className="config_input">
                                     <option value='0'>{'原生应用'}</option>
                                     <option value='1'>{'H5应用'}</option>
                                     <option value='2'>{'外部应用'}</option>
@@ -72,15 +71,15 @@ export default class AppConfigViewModal extends Component{
                             </div>
                             <div  style={{marginTop:'10px'}}>
                                 <div className="app_config_middle_text">{'IOS入口：'}</div>
-                                <input ref={'iosEntrance'} value={(data && data.iosEntrance) || ''} className="config_input" type="text"/>
+                                <input ref={'iosEntrance'} defaultValue={(data && data.iosEntrance) || ''} className="config_input" type="text"/>
                             </div>
                             <div style={{marginTop:'10px'}}>
                                 <div className="app_config_middle_text">{'安卓入口：'}</div>
-                                <input ref={'andEntrance'} value={(data && data.andEntrance)|| ''} className="config_input" type="text"/>
+                                <input ref={'andEntrance'} defaultValue={(data && data.andEntrance)|| ''} className="config_input" type="text"/>
                             </div>
                             <div style={{marginTop:'10px'}}>
                                 <div className="app_config_middle_text">{'PC入口：'}</div>
-                                <input ref={'pcEntrance'} value={(data && data.pcEntrance) || ''} className="config_input" type="text"/>
+                                <input ref={'pcEntrance'} defaultValue={(data && data.pcEntrance) || ''} className="config_input" type="text"/>
                             </div>
                         </div>
                     </div>

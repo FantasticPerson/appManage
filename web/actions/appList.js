@@ -19,7 +19,7 @@ export function getAppList(cb){
     } else {
         return createRemoteOnlyDAO({
             fromRemote:function () {
-                return myFetch.fetch_get_with_params(AdapterURL.GET_APP_LIST);
+                return myFetch.fetch_get(AdapterURL.GET_APP_LIST);
             },
             onEnd: function(data) {
                 if(!actionHelper.isError(data)) {

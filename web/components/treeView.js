@@ -38,6 +38,9 @@ export default class TreeView extends Component{
     render(){
         const {data} = this.props;
         let resultData = generateTreeViewData(data);
+        let funcExpand = this.onExtend.bind(this);
+        let funcCheck = this.onCheck.bind(this);
+        let funcSelect = this.onSelect.bind(this);
         let treeNodes = resultData.map((item)=>{
             let childNode = item.emps.map((item2)=>{
                 return <TreeNode title={item2.name} key={item2.userId}/>
@@ -48,10 +51,10 @@ export default class TreeView extends Component{
             <Tree
                 className="myCls" showLine checkable defaultExpandAll
                 defaultExpandedKeys={this.state.defaultExpandedKeys}
-                onExpand={this.onExpand.bind(this)}
+                onExpand={funcExpand}
                 defaultSelectedKeys={this.state.defaultSelectedKeys}
                 defaultCheckedKeys={this.state.defaultCheckedKeys}
-                onSelect={this.onSelect} onCheck={this.onCheck.bind(this)}
+                onSelect={funcSelect} onCheck={funcCheck}
             >
                 <TreeNode title="中威" key="中威">
                     {treeNodes}

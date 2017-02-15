@@ -141,7 +141,7 @@ export function AssignUserList(data,cb){
     else {
         return  createRemoteOnlyDAO({
             fromRemote:function () {
-                return myFetch.fetch_get_with_params(AdapterURL.POST_ASSIGN_ADMIN);
+                return myFetch.fetch_post(AdapterURL.POST_ASSIGN_ADMIN,data);
             },
             onEnd: function(data) {
                 if(!actionHelper.isError(data)) {

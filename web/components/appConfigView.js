@@ -97,7 +97,7 @@ export default class AppConfigViewModal extends Component{
         let reader = new FileReader();
         reader.onload = function(){
             console.log(reader.result);
-            this.props.dispatch(uploadPng({appIcon:reader.result},this.onUploadImageCb.bind(this)));
+            this.props.dispatch(uploadPng('appIcon'+'='+reader.result,this.onUploadImageCb.bind(this)));
             this.setState({imageUrl:reader.result})
         }.bind(this);
         reader.onerror=function(evt){
@@ -112,16 +112,14 @@ export default class AppConfigViewModal extends Component{
 
     onConfirmClick(){
         const {appName,appType,andEntrance,pcEntrance,downloadUrl,iosEntrance,singleEntrance} = this.refs;
-        let dataArr = {};
-        dataArr.name = appName.value;
-        dataArr.icon = '';
-        dataArr.iosApp = iosEntrance.value;
-        dataArr.iosEntrance = iosEntrance.value;
-        dataArr.andApp = andEntrance.value;
-        dataArr.andEntrance = andEntrance.value;
-        dataArr.pcEntrance = pcEntrance.value;
-        dataArr.loginEntrance = singleEntrance.value;
-        this.props.dispatch(showLoading());
+        let dataArr = 'name='+appName.value;
+        dataArr = dataArr + '&icon='+'ww';
+        dataArr = dataArr + '&iosApp='+iosEntrance.value;
+        dataArr = dataArr + '&iosEntrance='+iosEntrance.value;
+        dataArr = dataArr + '&andApp='+andEntrance.value;
+        dataArr = dataArr + '&andEntrance='+andEntrance.value;
+        dataArr = dataArr + '&pcEntrance='+ pcEntrance.value;
+        dataArr = dataArr + '&loginEntrance'+singleEntrance.value;
         this.props.dispatch(addApp(dataArr,this.onAddOrUpdateCb.bind(this)));
     }
 

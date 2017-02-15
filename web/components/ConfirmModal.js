@@ -27,10 +27,14 @@ export default class ConfirmModal extends Component{
     }
 
     onConfirm(){
+        const {confirmCb} = this.props;
+        confirmCb(true);
         this.props.dispatch(removeOverLayByName(OverLayNames.CONFIRM_MODAL_VIEW))
     }
 
     onCancel(){
+        const {confirmCb} = this.props;
+        confirmCb(false);
         this.props.dispatch(removeOverLayByName(OverLayNames.CONFIRM_MODAL_VIEW))
     }
 }

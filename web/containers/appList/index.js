@@ -88,7 +88,7 @@ class DeviceList extends Component{
     onDelCb(){
         this.props.dispatch(removeLoading());
         this.props.dispatch(showLoading('正在获取数据,请稍后...'));
-        this.props.dispatch(appActions.getAppList(this.getUserListCb.bind(this)));
+        this.props.dispatch(appActions.getAppList(this.onGetAppListCb().bind(this)));
     }
 
     onAdminConfig(id){

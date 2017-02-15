@@ -39,43 +39,48 @@ export default class AppConfigViewModal extends Component{
                                 }} className="app_config_img_upload_btn"/>
                             </div>
                         </div>
-                        <div className="app_config_up_right_container">
-                            <p className="app_config_name_input_text">{'应用名称：'}</p>
-                            <input ref={'appName'} className="app_config_name_input" type="text"/>
-                        </div>
                     </div>
                     <div className="devide_line"></div>
                     <div className="app_config_middle_container">
-                        <div className="app_config_middle_left">
+                        <div className="app_config_middle_left" style={{marginLeft:'30px'}}>
                             <div>
-                                <div className="app_config_middle_text">{'应用类型：'}</div>
-                                <select ref={'appType'} className="config_input">
-                                    <option value='0'>{'安卓'}</option>
-                                    <option value="1">{'IOS'}</option>
-                                    <option value="2">{'PC'}</option>
-                                </select>
+                                <p className="app_config_middle_text">{'应用名称：'}</p>
+                                <input ref={'appName'} className="config_input" type="text"/>
                             </div>
-                            <div style={{marginTop:'20px'}}>
-                                <div className="app_config_middle_text">{'安卓入口：'}</div>
-                                <input ref={'andEntrance'} className="config_input" type="text"/>
+
+                            <div style={{marginTop:'10px'}}>
+                                <div className="app_config_middle_text">{'IOS下载地址：'}</div>
+                                <input ref={'iosUrl'} className="config_input" type="text"/>
                             </div>
-                            <div style={{marginTop:'20px'}}>
-                                <div className="app_config_middle_text">{'Pc入口：'}</div>
-                                <input ref={'pcEntrance'} className="config_input" type="text"/>
+                            <div style={{marginTop:'10px'}}>
+                                <div className="app_config_middle_text">{'安卓下载地址：'}</div>
+                                <input ref={'andUrl'} className="config_input" type="text"/>
+                            </div>
+                            <div style={{marginTop:'10px'}}>
+                                <div className="app_config_middle_text">{'PC单点登陆地址：'}</div>
+                                <input ref={'pcUrl'} className="config_input" type="text"/>
                             </div>
                         </div>
                         <div className="app_config_middle_right">
                             <div>
-                                <div className="app_config_middle_text">{'下载地址：'}</div>
-                                <input ref={'downloadUrl'} className="config_input" type="text"/>
+                                <div className="app_config_middle_text">{'应用类型：'}</div>
+                                <select ref={'appType'} className="config_input">
+                                    <option value='0'>{'原生应用'}</option>
+                                    <option value='1'>{'H5应用'}</option>
+                                    <option value='2'>{'外部应用'}</option>
+                                </select>
                             </div>
-                            <div style={{marginTop:'20px'}}>
-                                <div className="app_config_middle_text">{'Ios入口：'}</div>
+                            <div  style={{marginTop:'10px'}}>
+                                <div className="app_config_middle_text">{'IOS入口：'}</div>
                                 <input ref={'iosEntrance'} className="config_input" type="text"/>
                             </div>
-                            <div style={{marginTop:'20px'}}>
-                                <div className="app_config_middle_text">{'单点登录入口：'}</div>
-                                <input ref={'singleEntrance'} className="config_input" type="text"/>
+                            <div style={{marginTop:'10px'}}>
+                                <div className="app_config_middle_text">{'安卓入口：'}</div>
+                                <input ref={'andEntrance'} className="config_input" type="text"/>
+                            </div>
+                            <div style={{marginTop:'10px'}}>
+                                <div className="app_config_middle_text">{'PC入口：'}</div>
+                                <input ref={'pcEntrance'} className="config_input" type="text"/>
                             </div>
                         </div>
                     </div>
@@ -113,13 +118,16 @@ export default class AppConfigViewModal extends Component{
 
     onConfirmClick(){
         const {data} = this.props;
-        const {appName,appType,andEntrance,pcEntrance,downloadUrl,iosEntrance,singleEntrance} = this.refs;
+        const {appName,iosUrl,andUrl,pcUrl,appType,iosEntrance,andEntrance,pcEntrance} = this.refs;
         let dataArr = 'name='+appName.value;
         dataArr = dataArr + '&icon='+'ww';
+        dataArr = dataArr + '&iosApp='+iosUrl.value;
         dataArr = dataArr + '&iosEntrance='+iosEntrance.value;
+        dataArr = dataArr + '&andApp='+andUrl.value;
         dataArr = dataArr + '&andEntrance='+andEntrance.value;
         dataArr = dataArr + '&pcEntrance='+ pcEntrance.value;
-        dataArr = dataArr + '&loginEntrance'+singleEntrance.value;
+        dataArr = dataArr + '&loginEntrance='+pcUrl.value;
+        dataArr = dataArr + '&type='+appType.value;
         if(appType.value == '安卓'){
             dataArr = dataArr + '&iosApp='+downloadUrl.value;
         } else if(appType.value == 'IOS'){

@@ -29,11 +29,12 @@ class DeviceList extends Component{
                 <div className="tool_btn_authority" key={'9'} onClick={()=>{this.onAdminConfig(item['id'])}}>{'权限配置'}</div>,
                 <div className="tool_btn_del" key={'10'} onClick={()=>{this.onDeleteClick(item['id'])}}>{'删除'}</div>
             ];
+            let appType = ['原生应用','H5应用','外部应用'][item.type];
             return (
                 <tr key={index} style={{height:'50px'}}>
                     <td key="0" style={styleTrTd}>{item.icon}</td>
                     <td key="1" style={styleTrTd}>{item.name}</td>
-                    <td key="2" style={styleTrTd}>{item.type}</td>
+                    <td key="2" style={styleTrTd}>{appType}</td>
                     <td key="3" style={styleTrTd}>{item.timesDay}</td>
                     <td key="4" style={styleTrTd}>{item.times}</td>
                     <td key="5" style={styleTrTd}>{item.users}</td>

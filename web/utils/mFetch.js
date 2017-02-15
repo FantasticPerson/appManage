@@ -18,13 +18,13 @@ export function fetch_get_with_params(url,params){
 }
 
 export function fetch_post_png(url,data){
-    return this.fetch_post(url,data,false);
+    return this.fetch_post(url,data,true);
 }
 
 export function fetch_post(url,data,isPng=false){
     console.log(data);
     let url2 = `${ADAPTER_URL}/${url}`;
-    let ContentType = isPng ? 'image/png' : 'application/x-www-form-urlencoded';
+    let ContentType = isPng ? 'multipart/form-data' : 'application/x-www-form-urlencoded';
     return fetch(url2,{
             headers: {
                 "Content-Type":ContentType,

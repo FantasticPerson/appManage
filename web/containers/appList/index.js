@@ -17,6 +17,7 @@ class DeviceList extends Component{
 
     render(){
         const {appList} = this.props;
+        const {tableWidth} = this.state;
         let headThArr = ViewState.tableHeadThProp.map((item,index)=>{
             return (
                 <th style={{width:item.width,textAlign:'center',color:'#7BBFE6'}} key={index}>{item.name}</th>
@@ -55,7 +56,7 @@ class DeviceList extends Component{
                     </div>
                 </div>
                 <div className="app_list_container">
-                    <table>
+                    <table style={{width:tableWidth}}>
                         <thead>
                             <tr style={{height: '35px', background: 'rgb(242, 247, 251)'}}>
                                 {headThArr}
@@ -106,6 +107,12 @@ class DeviceList extends Component{
     componentDidMount(){
         this.props.dispatch(showLoading('正在获取数据,请稍后...'));
         this.props.dispatch(appActions.getAppList(this.onGetAppListCb.bind(this)));
+        window.addEventListener('resize', this.handleResize.bind(this));
+    }
+
+    handleResize(){
+        const {innerWidth,innerHeight} = window;
+        this.setState({height:innerHeight-250,tableWidth:innerWidth-170<950?950:innerWidth-170});
     }
 
     onGetAppListCb(){

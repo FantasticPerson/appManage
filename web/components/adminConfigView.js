@@ -35,6 +35,7 @@ export default class AdminConfigView extends Component{
     onConfirmClick(){
         const {treeView} = this.refs;
         let selectIds = treeView.getCheclKeys();
+        console.log(selectIds);
         let str = ''+selectIds[0];
         for(let i=1;i<selectIds.length;i++){
             str = str + ',' + selectIds[i];

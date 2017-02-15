@@ -48,10 +48,10 @@ export default class TreeView extends Component{
             <Tree
                 className="myCls" showLine checkable defaultExpandAll
                 defaultExpandedKeys={this.state.defaultExpandedKeys}
-                onExpand={this.onExpand}
+                onExpand={this.onExpand.bind(this)}
                 defaultSelectedKeys={this.state.defaultSelectedKeys}
                 defaultCheckedKeys={this.state.defaultCheckedKeys}
-                onSelect={this.onSelect} onCheck={this.onCheck}
+                onSelect={this.onSelect} onCheck={this.onCheck.bind(this)}
             >
                 <TreeNode title="中威" key="中威">
                     {treeNodes}

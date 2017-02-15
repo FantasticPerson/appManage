@@ -122,7 +122,7 @@ export function getUserList(cb){
             },
             onEnd: function(data) {
                 if(!actionHelper.isError(data)) {
-                    this.dispatch(actionHelper.createPayloadAction(ActionTypes.update_user_list, data.data || []));
+                    this.dispatch(actionHelper.createPayloadAction(ActionTypes.update_user_list, data || []));
                 }
             }
         },cb);

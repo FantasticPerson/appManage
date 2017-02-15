@@ -101,6 +101,8 @@ function filterResponseJson(resJson,url){
         } else {
             return {data:resJson.Data};
         }
+    } else if(resJson.hasOwnProperty('depts')){
+        return {depts:resJson.depts,emps:resJson.emps}
     }
     else if (resJson.success) {
         return resJson.data || resJson.message;

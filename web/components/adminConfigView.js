@@ -41,7 +41,7 @@ export default class AdminConfigView extends Component{
         }
         if(str.length > 0) {
             this.props.dispatch(showLoading());
-            this.props.dispatch(AssignUserList(str, this.onAssignUserListCb.bind(this)));
+            this.props.dispatch(AssignUserList('addList='+str, this.onAssignUserListCb.bind(this)));
         } else {
             this.props.dispatch(removeOverLayByName(OverLayNames.ADMIN_CONFIG_VIEW));
         }

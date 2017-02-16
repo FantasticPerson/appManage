@@ -70,7 +70,7 @@ export function getAppAssignList(data,cb){
                         return item.userId
                     });
                     this.dispatch(actionHelper.createPayloadAction(ActionTypes.update_app_assign_list,userIds));
-                    this.dispatch(actionHelper.createPayloadAction(ActionTypes.update_app_assign_list,userIds));
+                    this.dispatch(actionHelper.createPayloadAction(ActionTypes.update_app_assign_last_list,userIds));
                 }
             }
         },cb);

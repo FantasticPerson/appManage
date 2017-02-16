@@ -28,7 +28,9 @@ export default class TreeView extends Component{
     }
 
     onCheck(checkedKeys, info){
+        const {onChecked} = this.props;
         this.checkKeys = checkedKeys;
+        onChecked(this.checkKeys);
     }
 
     getCheclKeys(){
@@ -36,16 +38,16 @@ export default class TreeView extends Component{
     }
 
     render(){
-        const {data} = this.props;
+        const {data,selectedData} = this.props;
         let resultData = generateTreeViewData(data);
         let funcExpand = this.onExtend.bind(this);
         let funcCheck = this.onCheck.bind(this);
         let funcSelect = this.onSelect.bind(this);
         let treeNodes = resultData.map((item)=>{
-            let childNode = item.emps.map((item2)=>{
+            let childNode = item.emps.map((item2,index)=>{
                 return <TreeNode title={item2.name} key={item2.userId}/>
             });
-            return <TreeNode title={item.dep.dname} key={item.dep.did}>{childNode}</TreeNode>
+            return <TreeNode title={item.dep.dname} key={'depId'+item.dep.did}>{childNode}</TreeNode>
         });
         return (
             <Tree
@@ -53,8 +55,9 @@ export default class TreeView extends Component{
                 defaultExpandedKeys={this.state.defaultExpandedKeys}
                 onExpand={funcExpand}
                 defaultSelectedKeys={this.state.defaultSelectedKeys}
-                defaultCheckedKeys={this.state.defaultCheckedKeys}
-                onSelect={funcSelect} onCheck={funcCheck}
+                defaultCheckedKeys={selectedData}
+                onSelect={funcSelect}
+                onCheck={funcCheck}
             >
                 <TreeNode title="中威" key="中威">
                     {treeNodes}

@@ -11,3 +11,11 @@ export const appList = {
 export const userList = {
     [ActionTypes.update_user_list]:actionPayloadReducer
 };
+
+export const appAssignList = {
+    [ActionTypes.update_app_assign_list]:actionPayloadReducer
+};
+
+export const appAssignListLast = {
+    [ActionTypes.update_app_assign_last_list]:actionPayloadReducer
+};

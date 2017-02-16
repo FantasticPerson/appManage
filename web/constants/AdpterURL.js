@@ -5,6 +5,7 @@ export const GET_LOGIN_LIST='api/loginList';
 
 export const GET_APP_LIST='app/appList';
 export const GET_USER_LIST='app/emps';
+export const GET_APP_ASSIGN_LIST='app/appUsers';
 export const POST_CREATE_APP='app/create';
 export const POST_UPDATE_APP='app/update';
 export const POST_DELETE_APP='app/delete';

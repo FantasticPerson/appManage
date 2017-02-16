@@ -22,7 +22,6 @@ export function fetch_post_png(url,data){
 }
 
 export function fetch_post(url,data,isPng=false){
-    console.log(data);
     let url2 = `${ADAPTER_URL}/${url}`;
     let ContentType = isPng ? 'multipart/form-data' : 'application/x-www-form-urlencoded';
     return fetch(url2,{
@@ -55,7 +54,6 @@ export function fetch_post(url,data,isPng=false){
 }
 
 export function fetch_get(url,includeCookie){
-    console.log(url);
     let url2 = `${ADAPTER_URL}/${url}`;
     return fetch(url2,{
         credentials: 'include',

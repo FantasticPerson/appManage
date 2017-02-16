@@ -69,7 +69,7 @@ export default class AppConfigViewModal extends Component{
                                     <option value='2'>{'外部应用'}</option>
                                 </select>
                             </div>
-                            <div  style={{marginTop:'10px'}}>
+                            <div style={{marginTop:'10px'}}>
                                 <div className="app_config_middle_text">{'IOS入口：'}</div>
                                 <input ref={'iosEntrance'} defaultValue={(data && data.iosEntrance) || ''} className="config_input" type="text"/>
                             </div>
@@ -127,11 +127,6 @@ export default class AppConfigViewModal extends Component{
         dataArr = dataArr + '&pcEntrance='+ pcEntrance.value;
         dataArr = dataArr + '&loginEntrance='+pcUrl.value;
         dataArr = dataArr + '&type='+appType.value;
-        if(appType.value == '安卓'){
-            dataArr = dataArr + '&iosApp='+downloadUrl.value;
-        } else if(appType.value == 'IOS'){
-            dataArr = dataArr + '&andApp='+downloadUrl.value;
-        }
         if(!data) {
             this.props.dispatch(addApp(dataArr, this.onAddOrUpdateCb.bind(this)));
         } else {

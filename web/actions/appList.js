@@ -50,6 +50,33 @@ export function uploadPng(data,cb){
     }
 }
 
+export function getAppAssignList(data,cb){
+    if(MockData.useMock){
+        if(cb){
+            cb();
+        }
+        return (dispatch)=>{
+            dispatch(actionHelper.createPayloadAction(ActionTypes.update_app_assign_list,['1176','1177']));
+            dispatch(actionHelper.createPayloadAction(ActionTypes.update_app_assign_last_list,['1176','1177']));
+        }
+    } else {
+        return createRemoteOnlyDAO({
+            fromRemote:function () {
+                return myFetch.fetch_post(AdapterURL.GET_APP_ASSIGN_LIST,data);
+            },
+            onEnd: function(data) {
+                if(!actionHelper.isError(data)) {
+                    let userIds = data.data.map((item)=>{
+                        return item.userId
+                    });
+                    this.dispatch(actionHelper.createPayloadAction(ActionTypes.update_app_assign_list,userIds));
+                    this.dispatch(actionHelper.createPayloadAction(ActionTypes.update_app_assign_list,userIds));
+                }
+            }
+        },cb);
+    }
+}
+
 export function updateApp(data,cb){
     if(MockData.useMock){
         cb();

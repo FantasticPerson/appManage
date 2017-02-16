@@ -30,7 +30,9 @@ class App extends Component {
 function mapStateToProps(state) {
     return {
         overLayList : state.view.overLayList,
-        userList:state.appList.userList
+        userList:state.appList.userList,
+        appAssignList:state.appList.appAssignList,
+        appAssignListLast:state.appList.appAssignListLast
     }
 }
 

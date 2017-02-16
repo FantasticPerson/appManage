@@ -23,7 +23,9 @@ export const rootReducer = nestCombineReducers({
     },
     appList:{
         list:handleActionsReducor([],appList.appList),
-        userList:handleActionsReducor([],appList.userList)
+        userList:handleActionsReducor([],appList.userList),
+        appAssignList:handleActionsReducor([],appList.appAssignList),
+        appAssignListLast:handleActionsReducor([],appList.appAssignListLast)
     }
 });
 

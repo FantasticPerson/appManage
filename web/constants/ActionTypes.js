@@ -15,3 +15,5 @@ export const update_login_list_page_num = "update_login_list_page_num";
 
 export const update_app_list = "update_app_list";
 export const update_user_list = "update_user_list";
+export const update_app_assign_list = "update_app_assign_list";
+export const update_app_assign_last_list = "update_app_assign_last_list";

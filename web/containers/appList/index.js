@@ -13,6 +13,7 @@ class DeviceList extends Component{
         super();
         this.state= {view:ViewState.view_loading,height:'750px',tableWidth:'950px'};
         this.id = null;
+        this.requestResNum = 0;
     }
 
     render(){
@@ -94,14 +95,21 @@ class DeviceList extends Component{
     }
 
     onAdminConfig(id){
+        this.requestResNum = 0;
         this.id = id;
         this.props.dispatch(showLoading('正在获取数据,请稍后...'));
         this.props.dispatch(appActions.getUserList(this.getUserListCb.bind(this)));
+        this.props.dispatch(appActions.getAppAssignList(id,this.getUserListCb.bind(this)));
     }
 
     getUserListCb(){
-        this.props.dispatch(removeLoading());
-        this.props.dispatch(showOverLayByName(ViewConstants.ADMIN_CONFIG_VIEW,{id:this.id}));
+        this.requestResNum++;
+        if(this.requestResNum == 2) {
+            setTimeout(function () {
+                this.props.dispatch(removeLoading());
+                this.props.dispatch(showOverLayByName(ViewConstants.ADMIN_CONFIG_VIEW, {id: this.id}));
+            }.bind(this),100);
+        }
     }
 
     componentDidMount(){

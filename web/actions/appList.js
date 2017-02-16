@@ -62,7 +62,7 @@ export function getAppAssignList(data,cb){
     } else {
         return createRemoteOnlyDAO({
             fromRemote:function () {
-                return myFetch.fetch_post(AdapterURL.GET_APP_ASSIGN_LIST,data);
+                return myFetch.fetch_get_with_params(AdapterURL.GET_APP_ASSIGN_LIST,data);
             },
             onEnd: function(data) {
                 if(!actionHelper.isError(data)) {

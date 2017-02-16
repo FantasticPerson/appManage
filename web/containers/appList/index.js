@@ -99,7 +99,7 @@ class DeviceList extends Component{
         this.id = id;
         this.props.dispatch(showLoading('正在获取数据,请稍后...'));
         this.props.dispatch(appActions.getUserList(this.getUserListCb.bind(this)));
-        this.props.dispatch(appActions.getAppAssignList(id,this.getUserListCb.bind(this)));
+        this.props.dispatch(appActions.getAppAssignList([{'key':'id','value':id}],this.getUserListCb.bind(this)));
     }
 
     getUserListCb(){

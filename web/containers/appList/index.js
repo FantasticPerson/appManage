@@ -115,6 +115,8 @@ class DeviceList extends Component{
     componentDidMount(){
         this.props.dispatch(showLoading('正在获取数据,请稍后...'));
         this.props.dispatch(appActions.getAppList(this.onGetAppListCb.bind(this)));
+        const {innerWidth,innerHeight} = window;
+        this.setState({height:innerHeight-250,tableWidth:innerWidth-170<950?950:innerWidth-170});
         window.addEventListener('resize', this.handleResize.bind(this));
     }
 

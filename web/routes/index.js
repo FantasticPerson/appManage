@@ -10,13 +10,6 @@ const index = {
     component:indexApp,
     onEnter:(nextState,replace,cb)=>{
         cb();
-    },
-    childRoutes:[
-        deviceList,
-        LoginList
-    ],
-    indexRoute: {
-        onEnter: (nextState, replace)=>replace('/loginList')//[/loginList || /deviceList]
     }
 };
 

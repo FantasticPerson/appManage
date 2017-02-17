@@ -30,18 +30,13 @@ export default class AppConfigViewModal extends Component{
                                 <img id="preview_image" src={imageUrl}/>
                             </div>
                             <div className="app_config_msg_con">
-                                {/*<p className="app_config_space_size_msg">{'尺寸：144*144'}</p>*/}
-                                {/*<p className="app_config_type_msg">{'png格式'}</p>*/}
-                                {/*<p className="app_config_size_msg">{'25K大小以内'}</p>*/}
-                                {/*<div className="app_config_img_upload_btn">{'上传logo'}</div>*/}
-                                {/*<input type="file" onChange={(e)=>{*/}
-                                    {/*this.onSelectChange(e);*/}
-                                {/*}} className="app_config_img_upload_btn"/>*/}
-                                <form id="form" action="http://10.10.61.193:10001/app/appIcon" method="POST" enctype="multipart/form-data"
-                                      onSubmit={()=>{this.onSubmit()}}>
-                                    <input type="file" name="appIcon"/>
-                                    <input type="submit" className="btn2"/>
-                                </form>
+                                <p className="app_config_space_size_msg">{'尺寸：144*144'}</p>
+                                <p className="app_config_type_msg">{'png格式'}</p>
+                                <p className="app_config_size_msg">{'25K大小以内'}</p>
+                                <div className="app_config_img_upload_btn">{'上传logo'}</div>
+                                <input type="file" onChange={(e)=>{
+                                    this.onSelectChange(e);
+                                }} className="app_config_img_upload_btn"/>
                             </div>
                         </div>
                     </div>
@@ -106,22 +101,24 @@ export default class AppConfigViewModal extends Component{
         if(!file.files || !file.files[0]){
             return;
         }
-        let reader = new FileReader();
-        reader.onload = function(){
-            console.log(reader.result);
-            let formData = new FormData();
-            formData.append('appIcon',reader.result);
-            this.props.dispatch(uploadPng(formData,this.onUploadImageCb.bind(this)));
-            this.setState({imageUrl:reader.result})
-        }.bind(this);
-        reader.onerror=function(evt){
-            console.log(evt);
-        };
-        reader.readAsDataURL(file.files[0]);
+        let formData = new FormData();
+        formData.append('appIcon',file.files[0]);
+        this.props.dispatch(uploadPng(formData,this.onUploadImageCb.bind(this)));
+        // let reader = new FileReader();
+        // reader.onload = function(){
+        //     let formData = new FormData();
+        //     formData.append('appIcon',file.files[0]);
+        //     this.props.dispatch(uploadPng(formData,this.onUploadImageCb.bind(this)));
+        //     this.setState({imageUrl:reader.result})
+        // }.bind(this);
+        // reader.onerror=function(evt){
+        //     console.log(evt);
+        // };
+        // reader.readAsDataURL(file.files[0]);
     }
 
-    onUploadImageCb(){
-
+    onUploadImageCb(data){
+        this.setState({imageUrl:data.appIcon});
     }
 
     onConfirmClick(){

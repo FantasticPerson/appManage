@@ -101,7 +101,11 @@ export default class AppConfigViewModal extends Component{
     setImageSize(){
         const {icon_img} = this.refs;
         const {width,height} = icon_img;
-        this.setState({imageMarginT:(130-height)/2,imageMarginL:(130-width)/2,display:''})
+        let scale = 1;
+        if(width > 130 || height > 130){
+            scale = 130 / width > 130 / height ? 130 /height : 130 / width;
+        }
+        this.setState({imageMarginT:(130-height*scale)/2,imageMarginL:(130-width*scale)/2,display:''})
     }
 
     onSelectChange(e){

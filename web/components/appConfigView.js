@@ -13,13 +13,14 @@ export default class AppConfigViewModal extends Component{
         this.state = {//http://pic51.nipic.com/file/20141023/2531170_115622554000_2.jpg
             imageUrl:'',
             imageMarginT:0,
-            imageMarginL:0
+            imageMarginL:0,
+            display:'none'
         };
     }
 
     render(){
         const {data,userList} = this.props;
-        const {imageUrl,imageMarginT,imageMarginL} = this.state;
+        const {imageUrl,imageMarginT,imageMarginL,display} = this.state;
         return (
             <BaseModal>
                 <div className="app_config_container">
@@ -31,7 +32,7 @@ export default class AppConfigViewModal extends Component{
                             <div className="app_config_yytb">{'应用图标:'}</div>
                             <div className="app_config_pic_con">{'没有预览可用'}</div>
                             <div className="app_config_pic_con_2">
-                                <img style={{marginLeft:imageMarginL+'px',marginTop:imageMarginT+'px'}} id="preview_image" ref="icon_img" src={imageUrl} onLoad={()=>{
+                                <img style={{display:display,marginLeft:imageMarginL+'px',marginTop:imageMarginT+'px'}} id="preview_image" ref="icon_img" src={imageUrl} onLoad={()=>{
                                     this.setImageSize()}}/>
                             </div>
                             <div className="app_config_msg_con">
@@ -100,7 +101,7 @@ export default class AppConfigViewModal extends Component{
     setImageSize(){
         const {icon_img} = this.refs;
         const {width,height} = icon_img;
-        this.setState({imageMarginT:(130-height)/2,imageMarginL:(130-width)/2})
+        this.setState({imageMarginT:(130-height)/2,imageMarginL:(130-width)/2,display:''})
     }
 
     onSelectChange(e){

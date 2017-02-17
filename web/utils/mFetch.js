@@ -25,7 +25,7 @@ export function fetch_post(url,data,isPng=false){
     let url2 = `${ADAPTER_URL}/${url}`;
     let ContentType = isPng ? 'application/octet-stream' : 'application/x-www-form-urlencoded';
     return fetch(url2,{
-            headers: {
+            headers: isPng ? {} : {
                 "Content-Type":ContentType,
             },
             method: 'post',

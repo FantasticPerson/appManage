@@ -116,13 +116,13 @@ class DeviceList extends Component{
         this.props.dispatch(showLoading('正在获取数据,请稍后...'));
         this.props.dispatch(appActions.getAppList(this.onGetAppListCb.bind(this)));
         const {innerWidth,innerHeight} = window;
-        this.setState({height:innerHeight-250,tableWidth:innerWidth-170<950?950:innerWidth-170});
+        this.setState({height:innerHeight-250,tableWidth:innerWidth-130<950?950:innerWidth-130});
         window.addEventListener('resize', this.handleResize.bind(this));
     }
 
     handleResize(){
         const {innerWidth,innerHeight} = window;
-        this.setState({height:innerHeight-250,tableWidth:innerWidth-170<950?950:innerWidth-170});
+        this.setState({height:innerHeight-250,tableWidth:innerWidth-130<950?950:innerWidth-130});
     }
 
     onGetAppListCb(){

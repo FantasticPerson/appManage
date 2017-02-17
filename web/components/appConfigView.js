@@ -118,7 +118,7 @@ export default class AppConfigViewModal extends Component{
     }
 
     onUploadImageCb(data){
-        this.setState({imageUrl:data.appIcon});
+        this.setState({imageUrl:data.data.appIcon});
     }
 
     onConfirmClick(){

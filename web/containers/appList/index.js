@@ -34,7 +34,11 @@ class DeviceList extends Component{
             let appType = ['原生应用','H5应用','外部应用'][item.type];
             return (
                 <tr key={index} style={{height:'50px'}}>
-                    <td key="0" style={styleTrTd}>{item.icon}</td>
+                    <td key="0" style={styleTrTd}>{
+                        <div className="app_small_icon_container">
+                            <img src={item.icon}/>
+                        </div>
+                    }</td>
                     <td key="1" style={styleTrTd}>{item.name}</td>
                     <td key="2" style={styleTrTd}>{appType}</td>
                     <td key="3" style={styleTrTd}>{item.timesDay}</td>

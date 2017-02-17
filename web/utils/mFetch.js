@@ -23,10 +23,9 @@ export function fetch_post_png(url,data){
 
 export function fetch_post(url,data,isPng=false){
     let url2 = `${ADAPTER_URL}/${url}`;
-    let ContentType = isPng ? 'application/octet-stream' : 'application/x-www-form-urlencoded';
     return fetch(url2,{
             headers: isPng ? {} : {
-                "Content-Type":ContentType,
+                "Content-Type":'application/x-www-form-urlencoded',
             },
             method: 'post',
             body:data
@@ -79,7 +78,7 @@ function filterHttpStatusResponse(response,url) {
     if (response.status >= 200 && response.status < 300) {
         return response;
     }
-    var error = null;
+    let error = new Error();
     if (response.status == 410) {
         error = new Error('error 410', response.statusText, response.content);
     } else if (response.status == 401) {

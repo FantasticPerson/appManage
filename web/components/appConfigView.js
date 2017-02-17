@@ -10,12 +10,16 @@ import * as OverLayNames from '../constants/OverLayNames'
 export default class AppConfigViewModal extends Component{
     constructor(){
         super();
-        this.state = {imageUrl:''};
+        this.state = {//http://pic51.nipic.com/file/20141023/2531170_115622554000_2.jpg
+            imageUrl:'',
+            imageMarginT:0,
+            imageMarginL:0
+        };
     }
 
     render(){
         const {data,userList} = this.props;
-        const {imageUrl} = this.state;
+        const {imageUrl,imageMarginT,imageMarginL} = this.state;
         return (
             <BaseModal>
                 <div className="app_config_container">
@@ -27,7 +31,8 @@ export default class AppConfigViewModal extends Component{
                             <div className="app_config_yytb">{'应用图标:'}</div>
                             <div className="app_config_pic_con">{'没有预览可用'}</div>
                             <div className="app_config_pic_con_2">
-                                <img id="preview_image" src={imageUrl}/>
+                                <img style={{marginLeft:imageMarginL+'px',marginTop:imageMarginT+'px'}} id="preview_image" ref="icon_img" src={imageUrl} onLoad={()=>{
+                                    this.setImageSize()}}/>
                             </div>
                             <div className="app_config_msg_con">
                                 <p className="app_config_space_size_msg">{'尺寸：144*144'}</p>
@@ -92,8 +97,10 @@ export default class AppConfigViewModal extends Component{
         )
     }
 
-    onSubmit(){
-        document.getElementById('form').submit();
+    setImageSize(){
+        const {icon_img} = this.refs;
+        const {width,height} = icon_img;
+        this.setState({imageMarginT:(130-height)/2,imageMarginL:(130-width)/2})
     }
 
     onSelectChange(e){
@@ -104,17 +111,6 @@ export default class AppConfigViewModal extends Component{
         let formData = new FormData();
         formData.append('appIcon',file.files[0]);
         this.props.dispatch(uploadPng(formData,this.onUploadImageCb.bind(this)));
-        // let reader = new FileReader();
-        // reader.onload = function(){
-        //     let formData = new FormData();
-        //     formData.append('appIcon',file.files[0]);
-        //     this.props.dispatch(uploadPng(formData,this.onUploadImageCb.bind(this)));
-        //     this.setState({imageUrl:reader.result})
-        // }.bind(this);
-        // reader.onerror=function(evt){
-        //     console.log(evt);
-        // };
-        // reader.readAsDataURL(file.files[0]);
     }
 
     onUploadImageCb(data){
@@ -123,9 +119,10 @@ export default class AppConfigViewModal extends Component{
 
     onConfirmClick(){
         const {data} = this.props;
+        const {imageUrl} = this.state;
         const {appName,iosUrl,andUrl,pcUrl,appType,iosEntrance,andEntrance,pcEntrance} = this.refs;
         let dataArr = 'name='+appName.value;
-        dataArr = dataArr + '&icon='+'ww';
+        dataArr = dataArr + '&icon='+imageUrl;
         dataArr = dataArr + '&iosApp='+iosUrl.value;
         dataArr = dataArr + '&iosEntrance='+iosEntrance.value;
         dataArr = dataArr + '&andApp='+andUrl.value;

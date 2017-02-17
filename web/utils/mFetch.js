@@ -23,7 +23,7 @@ export function fetch_post_png(url,data){
 
 export function fetch_post(url,data,isPng=false){
     let url2 = `${ADAPTER_URL}/${url}`;
-    let ContentType = isPng ? 'multipart/form-data' : 'application/x-www-form-urlencoded';
+    let ContentType = isPng ? 'application/octet-stream' : 'application/x-www-form-urlencoded';
     return fetch(url2,{
             headers: {
                 "Content-Type":ContentType,

@@ -56,8 +56,8 @@ export function getAppAssignList(data,cb){
             cb();
         }
         return (dispatch)=>{
-            dispatch(actionHelper.createPayloadAction(ActionTypes.update_app_assign_list,['1176','1177']));
-            dispatch(actionHelper.createPayloadAction(ActionTypes.update_app_assign_last_list,['1176','1177']));
+            dispatch(actionHelper.createPayloadAction(ActionTypes.update_app_assign_list,['1176','1177','']));
+            dispatch(actionHelper.createPayloadAction(ActionTypes.update_app_assign_last_list,['1176','1177','']));
         }
     } else {
         return createRemoteOnlyDAO({

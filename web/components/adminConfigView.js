@@ -57,7 +57,7 @@ export default class AdminConfigView extends Component{
         const {userList,appAssignList} = this.props;
         let userListSelect = [];
         userList.emps.map((item)=>{
-            if(appAssignList.indexOf(item.userId) >= 0){
+            if(appAssignList.indexOf(item.userId) >= 0 &&　item.userId.length > 0){
                 userListSelect.push(item);
             }
         });

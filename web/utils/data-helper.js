@@ -9,7 +9,7 @@ export function generateTreeViewData(data){
         for(let i = 0;i<depts.length;i++){
             let deptArr = [];
             for(let j=0;j<emps.length;j++){
-                if(emps[j].deptId == depts[i].did){
+                if(emps[j].deptId == depts[i].did &&　emps[j].userId.length > 0){
                     deptArr.push(emps[j])
                 }
             }

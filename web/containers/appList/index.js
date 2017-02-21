@@ -36,7 +36,7 @@ class DeviceList extends Component{
                 <tr key={index} style={{height:'50px'}}>
                     <td key="0" style={styleTrTd}>{
                         <div className="app_small_icon_container">
-                            <img ref={'icon_img'+index} style={{display:'none'}} src={item.icon} onLoad={()=>{this.onIconLoad(index)}}/>
+                            <img className="app_small_icon_img" ref={'icon_img'+index} style={{display:'none'}} src={item.icon} onLoad={()=>{this.onIconLoad(index)}}/>
                         </div>
                     }</td>
                     <td key="1" style={styleTrTd}>{item.name}</td>

@@ -100,6 +100,7 @@ export default class AppConfigViewModal extends Component{
 
     componentDidMount(){
         const {data} = this.props;
+        console.log('data.icon:'+data.icon);
         this.setState({imageUrl:data.icon});
     }
 

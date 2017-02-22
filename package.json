@@ -53,6 +53,7 @@
     "fs": "0.0.1-security",
     "gulp": "^3.9.1",
     "html-webpack-plugin": "^2.22.0",
+    "http-proxy-middleware": "^0.17.3",
     "md5": "^2.2.1",
     "node-persist": "^2.0.2",
     "nodemon": "^1.10.2",

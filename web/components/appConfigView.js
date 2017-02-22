@@ -98,6 +98,11 @@ export default class AppConfigViewModal extends Component{
         )
     }
 
+    componentDidMount(){
+        const {data} = this.props;
+        this.setState({imageUrl:data.icon});
+    }
+
     setImageSize(){
         const {icon_img} = this.refs;
         const {width,height} = icon_img;

@@ -30,6 +30,10 @@ export default class TreeView extends Component{
     onCheck(checkedKeys, info){
         const {onChecked} = this.props;
         this.checkKeys = checkedKeys;
+        let index = this.checkKeys.indexOf('中威');
+        if(index >= 0){
+            this.checkKeys.splice(index,1);
+        }
         onChecked(this.checkKeys);
     }
 

@@ -121,8 +121,8 @@ export default class AdminConfigView extends Component{
         treeView.getCheclKeys().map((item)=>{
             if(item.indexOf('depId') < 0){
                 selectIds.push(item);
-            }});
-
+            }}
+        );
         let arrAdd = '';
         let arrDel = '';
         appAssignList.map((item)=>{

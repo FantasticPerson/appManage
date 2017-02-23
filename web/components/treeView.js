@@ -30,10 +30,6 @@ export default class TreeView extends Component{
     onCheck(checkedKeys, info){
         const {onChecked} = this.props;
         this.checkKeys = checkedKeys;
-        let index = this.checkKeys.indexOf('中威');
-        if(index >= 0){
-            this.checkKeys.splice(index,1);
-        }
         onChecked(this.checkKeys);
     }
 
@@ -47,19 +43,25 @@ export default class TreeView extends Component{
         let funcExpand = this.onExtend.bind(this);
         let funcCheck = this.onCheck.bind(this);
         let funcSelect = this.onSelect.bind(this);
+        let selectedKey = [];
         let treeNodes = resultData.map((item)=>{
             let childNode = item.emps.map((item2,index)=>{
+                if(selectedData.indexOf(item2.userId) >= 0){
+                    selectedKey.push(item2.userId);
+                }
                 return <TreeNode title={item2.name} key={item2.userId}/>
             });
             return <TreeNode title={item.dep.dname} key={'depId'+item.dep.did}>{childNode}</TreeNode>
         });
+
+
         return (
             <Tree
                 className="myCls" showLine checkable defaultExpandAll
                 defaultExpandedKeys={this.state.defaultExpandedKeys}
                 onExpand={funcExpand}
                 defaultSelectedKeys={this.state.defaultSelectedKeys}
-                defaultCheckedKeys={selectedData}
+                defaultCheckedKeys={selectedKey}
                 onSelect={funcSelect}
                 onCheck={funcCheck}
             >
